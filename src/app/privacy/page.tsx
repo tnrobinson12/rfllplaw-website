@@ -49,20 +49,39 @@ export default function PrivacyPage() {
             <h2>Information we collect</h2>
             <ul>
               <li>
-                <strong>Information you provide.</strong> Name, email address, telephone number,
-                organization and message content submitted through the contact form or sent by
-                email.
+                <strong>Information you provide voluntarily.</strong> Name, email address,
+                telephone number, organization and message content that you choose to submit
+                through the website contact form or send by email. The website does not require
+                you to provide any information in order to browse it.
               </li>
               <li>
-                <strong>Technical information.</strong> Standard server and analytics data such as
-                IP address, browser type, referring page, pages viewed and time of access.
-              </li>
-              <li>
-                <strong>Cookies.</strong> Cookies and similar technologies used to operate the site
-                and, if enabled, to measure aggregate usage. You can disable cookies in your browser
-                settings; parts of the site may not function as intended.
+                <strong>Technical information.</strong> As with any website, the servers that
+                deliver this site may automatically record standard technical information in
+                connection with operating and securing it, such as IP address, browser and device
+                information, the pages requested and the date and time of access.
               </li>
             </ul>
+
+            <h2>Website hosting and form processing</h2>
+            <p>
+              This website is hosted by Netlify, and the website contact form is processed using
+              Netlify Forms. Information submitted through the contact form is processed through
+              Netlify Forms and made available to the firm. Standard technical information
+              described above is processed by the hosting provider in the ordinary course of
+              delivering and securing the site.
+            </p>
+            <p>
+              These services process information on the firm&rsquo;s behalf and are subject to their
+              own terms and privacy practices.
+            </p>
+
+            <h2>Cookies and tracking</h2>
+            <p>
+              The firm does not use analytics, advertising cookies, tracking pixels or remarketing
+              technologies on this website. The website does not set cookies to track visitors
+              across sites or over time. Providers involved in hosting the site may use strictly
+              necessary technologies where required to deliver or secure it.
+            </p>
 
             <h2>How we use information</h2>
             <ul>
@@ -84,8 +103,9 @@ export default function PrivacyPage() {
             <p>
               Submitting information through this website does not create an attorney-client
               relationship and does not make the information confidential or privileged. Please do
-              not send confidential or sensitive information until an attorney-client relationship
-              has been established in writing. See the{' '}
+              not submit confidential or sensitive information through the general website contact
+              form unless an attorney at the firm has instructed you to do so, and in any event not
+              until an attorney-client relationship has been established in writing. See the{' '}
               <Link href="/disclaimer">disclaimer</Link>.
             </p>
 
