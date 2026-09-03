@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/seo';
 import { breadcrumbSchema, type Crumb } from '@/lib/schema';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
-import { PlaceholderNote, PlaceholderText } from '@/components/Placeholder';
+import { PlaceholderText } from '@/components/Placeholder';
 
 const crumbs: Crumb[] = [
   { name: 'Home', href: '/' },
@@ -37,14 +37,6 @@ export default function AttorneyAdvertisingPage() {
 
       <section className="section">
         <div className="container">
-          <div style={{ marginBottom: 'var(--s-8)', maxWidth: 'var(--measure-wide)' }}>
-            <PlaceholderNote label="Review required">
-              Confirm the required advertising disclosures for every jurisdiction in which the
-              firm&rsquo;s attorneys are admitted, and identify the attorney responsible for the
-              content of this website where a rule requires it.
-            </PlaceholderNote>
-          </div>
-
           <div className="legal-body">
             <h2>Notice</h2>
             <p>
@@ -63,12 +55,10 @@ export default function AttorneyAdvertisingPage() {
 
             <h2>Responsible attorney</h2>
             <p>
-              <span className="placeholder">
-                Identify the attorney responsible for the content of this website, and the
-                office address required by the applicable advertising rules.
-              </span>
-            </p>
-            <p>
+              Todd Robinson
+              <br />
+              Managing Partner
+              <br />
               {site.name}
               <br />
               <PlaceholderText text={office.streetAddress} />

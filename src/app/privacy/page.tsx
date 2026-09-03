@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/seo';
 import { breadcrumbSchema, type Crumb } from '@/lib/schema';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
-import { PlaceholderNote, PlaceholderText } from '@/components/Placeholder';
+import { PlaceholderText } from '@/components/Placeholder';
 
 const crumbs: Crumb[] = [
   { name: 'Home', href: '/' },
@@ -37,14 +37,6 @@ export default function PrivacyPage() {
 
       <section className="section">
         <div className="container">
-          <div style={{ marginBottom: 'var(--s-8)', maxWidth: 'var(--measure-wide)' }}>
-            <PlaceholderNote label="Review required">
-              This policy is a starting draft. It must be reviewed and approved by the firm before
-              launch, and updated to reflect the analytics, hosting, email and form-handling
-              services actually in use, and any state privacy law obligations that apply.
-            </PlaceholderNote>
-          </div>
-
           <div className="legal-body">
             <h2>Scope</h2>
             <p>
@@ -108,11 +100,7 @@ export default function PrivacyPage() {
             <p>
               You may request access to, correction of, or deletion of information you have
               submitted, subject to the firm&rsquo;s legal and professional obligations. Depending on
-              your state of residence, additional rights may apply.{' '}
-              <span className="placeholder">
-                Confirm which state privacy laws apply to the firm and expand this section
-                accordingly.
-              </span>
+              your state of residence, additional rights may apply.
             </p>
 
             <h2>Third-party links</h2>
@@ -137,7 +125,7 @@ export default function PrivacyPage() {
             </p>
 
             <p className="muted" style={{ marginTop: 'var(--s-7)', fontSize: 'var(--t-micro)' }}>
-              Effective date: <span className="placeholder">To be set at launch</span>
+              Effective date: September 3, 2026
             </p>
           </div>
         </div>

@@ -6,7 +6,6 @@ import { pageMetadata } from '@/lib/seo';
 import { breadcrumbSchema, type Crumb } from '@/lib/schema';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
-import { PlaceholderNote } from '@/components/Placeholder';
 
 const crumbs: Crumb[] = [
   { name: 'Home', href: '/' },
@@ -37,13 +36,6 @@ export default function TermsPage() {
 
       <section className="section">
         <div className="container">
-          <div style={{ marginBottom: 'var(--s-8)', maxWidth: 'var(--measure-wide)' }}>
-            <PlaceholderNote label="Review required">
-              These terms are a starting draft and must be reviewed and approved by the firm before
-              launch.
-            </PlaceholderNote>
-          </div>
-
           <div className="legal-body">
             <h2>Acceptance</h2>
             <p>
