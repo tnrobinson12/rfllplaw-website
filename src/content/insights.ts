@@ -149,7 +149,7 @@ export const insights: Insight[] = [
         type: 'ul',
         items: [
           'Reviewing income documentation for the relevant periods, together with a written representation about the investor’s expectations for the current year.',
-          'Reviewing statements of assets and liabilities as of a recent date to establish net worth, which is calculated excluding the value of the investor’s primary residence.',
+          'Reviewing recent documentation of both assets and liabilities to establish net worth. The liability side matters as much as the asset side, and is ordinarily confirmed by reference to a consumer credit report. Net worth is calculated excluding the value of the investor’s primary residence.',
           'Obtaining written confirmation from a registered broker-dealer, an investment adviser registered with the Commission, a licensed attorney or a certified public accountant that the person has taken reasonable steps to verify the investor’s status.',
           'Relying, in defined circumstances, on a written certification from an investor the issuer previously verified.',
         ],
@@ -166,23 +166,23 @@ export const insights: Insight[] = [
       { type: 'h2', text: 'Form D and state notice filings' },
       {
         type: 'p',
-        text: 'An issuer relying on Rule 506 files a Form D with the Commission, generally within fifteen days after the first sale of securities in the offering. Form D is a notice filing. It is not an application, it is not reviewed or approved, and — as noted above — it does not itself establish the exemption. It is nonetheless required, and failure to file can affect a sponsor’s ability to rely on the rule going forward and can complicate matters at the state level.',
+        text: 'An issuer relying on Rule 506 files a Form D with the Commission. Form D is a notice filing, and it generally must be filed within fifteen calendar days after the first sale of securities in the offering. It is not an application, it is not reviewed or approved, and — as noted above — it does not itself establish the exemption. Failure to file the Form D on time does not, by itself, eliminate the availability of the Rule 506 exemption, although noncompliance can carry other consequences, including at the state level.',
       },
       {
         type: 'p',
-        text: 'Although states may not require registration of a Rule 506 offering, they generally may require a notice filing and a fee in each state where an investor resides. These filings typically mirror the Form D, but deadlines, fee amounts and mechanics vary among states. Amendments may also be required — annually while an offering continues, and upon certain changes to the information previously reported. Missed state notice filings are among the more common and more easily avoided administrative problems in a private raise.',
+        text: 'Although states may not require registration of a Rule 506 offering, applicable states may require a notice filing and a fee in connection with offers and sales made in those jurisdictions. These filings typically mirror the Form D, but deadlines, fee amounts and mechanics vary among states. Amendments may also be required — annually while an offering continues, and upon certain changes to the information previously reported. Missed state notice filings are among the more common and more easily avoided administrative problems in a private raise.',
       },
       { type: 'h2', text: 'Practical considerations for sponsors' },
       {
         type: 'ul',
         items: [
-          'Decide between Rule 506(b) and Rule 506(c) before any marketing begins. A public communication cannot be withdrawn, and an offering intended to proceed under Rule 506(b) that is generally solicited may lose the exemption it was relying on.',
+          'Decide between Rule 506(b) and Rule 506(c) before any marketing begins. General solicitation can materially affect the availability of Rule 506(b) for an offering, and whether the issuer may then rely on another exemption or proceed under a different offering structure depends on the facts and on the applicable integration rules.',
           'Consider whether the program is deal-by-deal or continuous. Repeated raises raise integration questions, and a program that grows may implicate Investment Company Act exclusions and investment adviser status.',
           'If relying on Rule 506(b), build and document the investor relationships before the transaction, and keep records showing when each relationship began.',
           'If relying on Rule 506(c), treat verification as a gating item in the closing timeline rather than an administrative step at the end.',
           'Keep marketing materials and the offering documents consistent. Projections or descriptions that appear in a deck but not in the offering memorandum create avoidable disclosure exposure.',
           'Complete bad-actor diligence on the covered persons associated with the offering before the raise, not after a subscription is received.',
-          'Track state notice filings by investor residence, and calendar the amendment deadlines.',
+          'Track state notice filing obligations for the jurisdictions in which offers and sales are made, and calendar the amendment deadlines.',
         ],
       },
       { type: 'h2', text: 'A practical takeaway' },
@@ -211,7 +211,7 @@ export const insights: Insight[] = [
       },
       {
         type: 'p',
-        text: 'What follows describes structures as they are commonly encountered. Terms vary substantially among transactions, lenders and capital providers, and the characterization of any particular investment depends on its own documents and facts.',
+        text: 'What follows describes structures as they are commonly encountered. Terms vary substantially among transactions, lenders and capital providers. The characterization of any particular investment — together with its priority, the remedies available to each party, and how it is treated in a workout or an insolvency proceeding — depends on the transaction structure, the governing documents and applicable law. It is not determined by the label the parties put on it.',
       },
       { type: 'h2', text: 'Position in the capital stack' },
       {
@@ -359,7 +359,7 @@ export const insights: Insight[] = [
       { type: 'h2', text: 'Multiple guarantors' },
       {
         type: 'p',
-        text: 'Where several principals guarantee the same loan, the default position in most forms is joint and several liability. Each guarantor is liable for the entire obligation, and the lender may ordinarily proceed against any one of them without first pursuing the others or the collateral.',
+        text: 'Where several principals guarantee the same loan, the default position in most forms is joint and several liability. Each guarantor is liable for the entire obligation, and the loan documents commonly permit the lender to proceed against any one of them without first pursuing the others or the collateral. What a lender may actually do in a given enforcement depends on applicable law, on the guaranty and loan documents, and on the circumstances.',
       },
       {
         type: 'p',
@@ -372,7 +372,12 @@ export const insights: Insight[] = [
       },
       {
         type: 'p',
-        text: 'The practical effect is that a lender may often pursue the guarantor directly and immediately upon a default, without exhausting other remedies first. The scope and enforceability of particular waivers is a question of applicable law and of the specific language used, and it varies by jurisdiction.',
+        text: 'The effect these provisions are drafted to achieve is that a lender may pursue the guarantor directly upon a default, without exhausting other remedies first. Whether that path is available in a particular enforcement depends on applicable law, on the specific language used and on the circumstances. The scope and enforceability of particular waivers varies by jurisdiction.',
+      },
+      { type: 'h2', text: 'A Georgia note on deficiency claims' },
+      {
+        type: 'p',
+        text: 'Georgia law may impose confirmation requirements following certain non-judicial foreclosure sales before a creditor may pursue a deficiency. Whether and how those requirements apply to a guarantor, and how they interact with particular guaranty provisions, can depend on the documents and on the circumstances of the enforcement. For a transaction secured by Georgia real property, it is a question worth identifying early rather than after a default.',
       },
       { type: 'h2', text: 'Amendments and modifications' },
       {
