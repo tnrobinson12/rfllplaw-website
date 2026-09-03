@@ -1,0 +1,1286 @@
+/* ==========================================================================
+   Page-level compositions
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Homepage hero
+   -------------------------------------------------------------------------- */
+
+/* The hero is built around the atrium photograph, which is bright and warm.
+   Rather than darkening it to carry light type, the composition gives the copy
+   its own ground: a band of --paper above the photograph on small screens, and
+   the left half of the container on large ones. The headline is therefore ink
+   on paper at every width, and the photograph is never covered by more than a
+   feathered edge. */
+
+.hero {
+  /* Height of the photograph band below the desktop breakpoint. Declared here so
+     .hero__media and .hero__inner's padding can never drift apart. */
+  --hero-media-h: clamp(16rem, 44svh, 23rem);
+
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(34rem, 88svh, 58rem);
+  background: var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+/* Small screens: a full-bleed band across the top, running under the header. */
+.hero__media {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--hero-media-h);
+  z-index: 0;
+}
+
+/* The Figure primitive is ratio-constrained by default; in the hero it fills. */
+.hero__media .figure {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  height: 100%;
+  background: var(--paper-2);
+}
+
+.hero__media img,
+.hero__media .artwork {
+  width: 100%;
+  height: 100%;
+  /* The photograph is near-square (794 x 819). `cover` crops rather than
+     stretches it; the position keeps the skylight, the tower and the upper
+     chandeliers in frame when the band is wider than it is tall. */
+  object-fit: cover;
+  object-position: 50% 32%;
+  animation: hero-settle 2400ms var(--ease-out) both;
+}
+
+@keyframes hero-settle {
+  from {
+    transform: scale(1.06);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__media img,
+  .hero__media .artwork {
+    animation: none;
+  }
+}
+
+/* Two light washes, both in --paper — never a black overlay. One keeps the
+   navigation legible where it crosses the photograph; one feathers the
+   photograph into the copy's ground so the join is not a hard seam. The scrim
+   tracks .hero__media exactly, so it only ever sits over the picture. */
+.hero__scrim {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--hero-media-h);
+  z-index: 1;
+  background-image:
+    linear-gradient(to bottom, rgba(250, 248, 244, 0.88), rgba(250, 248, 244, 0)),
+    linear-gradient(to top, var(--paper) 0%, rgba(250, 248, 244, 0) 26%);
+  background-size:
+    100% calc(var(--header-h) + 2.25rem),
+    100% 100%;
+  background-position: top left, top left;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-top: calc(var(--hero-media-h) + clamp(2rem, 1.2rem + 3vw, 3.25rem));
+  padding-bottom: clamp(3rem, 1.5rem + 5vw, 6rem);
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  color: var(--accent);
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+}
+
+.hero__eyebrow::before {
+  content: '';
+  width: clamp(1.75rem, 4vw, 3.5rem);
+  height: 1px;
+  background: currentColor;
+  flex: none;
+}
+
+.hero__title {
+  margin-top: var(--s-6);
+  font-family: var(--font-display);
+  font-size: var(--t-display-1);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  max-width: 15ch;
+}
+
+.hero__sub {
+  margin-top: var(--s-6);
+  max-width: 44ch;
+  font-size: var(--t-lede);
+  line-height: 1.55;
+  color: var(--ink-70);
+}
+
+.hero__actions {
+  margin-top: clamp(2rem, 1.2rem + 2.4vw, 3.25rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+}
+
+.hero__foot {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  padding-top: var(--s-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  font-size: var(--t-micro);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-55);
+}
+
+.hero__foot li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.hero__foot li::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  flex: none;
+}
+
+/* ---- Desktop: photograph right, copy left --------------------------------
+   The photograph is anchored to the viewport's midpoint and the copy occupies
+   column one of the centred container. Because the container is centred, its
+   first column always ends at the midpoint minus half the gutter — so the two
+   can never collide, at any viewport width, without hard-coded widths. */
+
+@media (min-width: 62rem) {
+  .hero__media,
+  .hero__scrim {
+    inset: 0 0 0 50%;
+    height: auto;
+  }
+
+  .hero__media img,
+  .hero__media .artwork {
+    /* Panel is taller than wide, the photograph very slightly wider than tall:
+       the crop is a few percent off each side, centred on the atrium's axis. */
+    object-position: 50% 42%;
+  }
+
+  .hero__scrim {
+    background-image:
+      linear-gradient(to bottom, rgba(250, 248, 244, 0.8), rgba(250, 248, 244, 0)),
+      linear-gradient(to right, var(--paper) 0%, rgba(250, 248, 244, 0) 16%);
+    background-size:
+      100% calc(var(--header-h) + 3rem),
+      100% 100%;
+  }
+
+  .hero__inner {
+    padding-top: calc(var(--header-h) + clamp(3.5rem, 1.5rem + 7vw, 7.5rem));
+  }
+
+  .hero__inner .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(2.5rem, 5vw, 6rem);
+  }
+
+  .hero__copy {
+    grid-column: 1;
+  }
+
+  /* One step down the existing display scale. At full width display-1 sets this
+     headline in three lines; in a half-width column it would run to six, which
+     would push the hero — and with it the photograph's panel — to nearly twice
+     the viewport height and crop the atrium to a narrow slit. */
+  .hero__title {
+    font-size: var(--t-display-2);
+  }
+}
+
+@media (max-width: 46.875rem) {
+  .hero {
+    --hero-media-h: clamp(13rem, 34svh, 17rem);
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  .hero__inner {
+    padding-bottom: var(--s-8);
+  }
+
+  .hero__title {
+    max-width: 100%;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Editorial statement (homepage positioning)
+   -------------------------------------------------------------------------- */
+
+.statement {
+  padding-block: clamp(4rem, 2rem + 8vw, 10rem);
+}
+
+.statement__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 1.05rem + 2.85vw, 3.55rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  color: var(--ink);
+}
+
+.statement__text em {
+  font-style: normal;
+  color: var(--ink-40);
+}
+
+.statement__aside {
+  max-width: 34rem;
+  align-self: end;
+}
+
+.statement__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: start;
+}
+
+@media (max-width: 60rem) {
+  .statement__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .statement__text {
+    max-width: 100%;
+  }
+}
+
+.stat-row {
+  margin-top: clamp(3rem, 2rem + 4vw, 5.5rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-5);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-6);
+}
+
+@media (max-width: 56rem) {
+  .stat-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-6) var(--s-5);
+  }
+}
+
+.stat__label {
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.stat__value {
+  margin-top: var(--s-3);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem);
+  line-height: 1.32;
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   Lifecycle band (the firm's organising idea)
+   -------------------------------------------------------------------------- */
+
+.lifecycle {
+  margin-top: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-top: 1px solid var(--rule-inverse);
+}
+
+.lifecycle__step {
+  padding: var(--s-5) var(--s-4) var(--s-6) 0;
+  border-right: 1px solid var(--rule-inverse);
+  position: relative;
+}
+
+.lifecycle__step:last-child {
+  border-right: 0;
+}
+
+.lifecycle__step::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--focus-inverse);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.lifecycle.is-visible .lifecycle__step::before {
+  width: 100%;
+  transition-delay: calc(var(--i, 0) * 110ms);
+}
+
+.lifecycle__num {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  color: var(--focus-inverse);
+}
+
+.lifecycle__name {
+  margin-top: var(--s-4);
+  font-family: var(--font-display);
+  font-size: clamp(0.98rem, 0.9rem + 0.4vw, 1.22rem);
+  line-height: 1.25;
+  color: var(--on-dark);
+}
+
+.lifecycle__desc {
+  margin-top: var(--s-3);
+  font-size: var(--t-micro);
+  line-height: 1.55;
+  color: var(--on-dark-muted);
+  padding-right: var(--s-4);
+}
+
+@media (max-width: 68rem) {
+  .lifecycle {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lifecycle__step:nth-child(4) {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 46.875rem) {
+  .lifecycle {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lifecycle__step {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule-inverse);
+    padding-right: var(--s-4);
+  }
+
+  .lifecycle__step:nth-child(odd) {
+    border-right: 1px solid var(--rule-inverse);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Practice grid (homepage + /practices)
+   -------------------------------------------------------------------------- */
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 0.5rem + 3.4vw, 4rem);
+}
+
+/* Reveal wrappers sit between the grid and the card — keep heights equal. */
+.practice-grid > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.practice-grid > * > .practice-card {
+  flex: 1;
+}
+
+@media (max-width: 60rem) {
+  .practice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40rem) {
+  .practice-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Standard page hero (interior pages)
+   -------------------------------------------------------------------------- */
+
+.page-hero {
+  position: relative;
+  padding-top: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-hero__eyebrow {
+  margin-bottom: var(--s-5);
+}
+
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: var(--t-h1);
+  line-height: 1.06;
+  letter-spacing: -0.024em;
+  max-width: 17ch;
+}
+
+.page-hero__lede {
+  margin-top: var(--s-6);
+  max-width: 52ch;
+  font-size: var(--t-lede);
+  line-height: 1.52;
+  color: var(--ink-55);
+}
+
+.page-hero__crumbs {
+  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+}
+
+.page-hero--dark {
+  background: var(--surface-dark);
+  color: var(--on-dark);
+  border-bottom: 0;
+  padding-top: clamp(3.5rem, 2rem + 6vw, 7rem);
+  padding-bottom: clamp(3rem, 2rem + 5vw, 6rem);
+}
+
+.page-hero--dark .page-hero__lede {
+  color: var(--on-dark-muted);
+}
+
+.page-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.3;
+  overflow: hidden;
+}
+
+.page-hero__media .figure {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  height: 100%;
+  background: transparent;
+}
+
+.page-hero--dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(16, 19, 20, 0.92) 0%,
+    rgba(16, 19, 20, 0.72) 55%,
+    rgba(16, 19, 20, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+.page-hero--dark .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   Practice detail
+   -------------------------------------------------------------------------- */
+
+.practice-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 1rem + 4.5vw, 5.5rem);
+  align-items: start;
+}
+
+@media (max-width: 60rem) {
+  .practice-overview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.sidebar-card {
+  border-top: 2px solid var(--ink);
+  padding-top: var(--s-5);
+}
+
+.sidebar-card h3 {
+  font-family: var(--font-sans);
+  font-size: var(--t-eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+}
+
+.sidebar-card ul {
+  margin-top: var(--s-4);
+  display: grid;
+}
+
+.sidebar-card li {
+  border-bottom: 1px solid var(--rule);
+}
+
+.sidebar-card li a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-block: 0.85rem;
+  font-size: var(--t-small);
+  color: var(--ink-70);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.sidebar-card li a:hover {
+  color: var(--accent-ink);
+}
+
+.sidebar-card li a span {
+  color: var(--ink-40);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.sidebar-card li a:hover span {
+  transform: translateX(0.25rem);
+}
+
+/* Capabilities */
+
+.capability-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 1rem + 3vw, 3.5rem) clamp(1.5rem, 0.5rem + 3vw, 3.5rem);
+}
+
+@media (max-width: 60rem) {
+  .capability-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40rem) {
+  .capability-groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.capability-group__title {
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  line-height: 1.22;
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.section--dark .capability-group__title {
+  border-color: var(--rule-inverse);
+}
+
+.capability-group__list {
+  margin-top: var(--s-4);
+  display: grid;
+  gap: 0.65rem;
+}
+
+.capability-group__list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: var(--t-small);
+  line-height: 1.55;
+  color: var(--ink-70);
+}
+
+.section--dark .capability-group__list li {
+  color: var(--on-dark-muted);
+}
+
+.capability-group__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section--dark .capability-group__list li::before {
+  background: var(--focus-inverse);
+}
+
+/* Pull quote / emphasis panel */
+
+.panel {
+  padding: clamp(1.75rem, 1rem + 3vw, 3.25rem);
+  background: var(--paper-2);
+  border-left: 2px solid var(--accent);
+}
+
+.panel__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 1.05vw, 1.75rem);
+  line-height: 1.36;
+  letter-spacing: var(--track-tight);
+  max-width: 40ch;
+}
+
+.section--dark .panel {
+  background: var(--surface-dark-2);
+  border-left-color: var(--focus-inverse);
+}
+
+/* Related practices */
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 0.5rem + 3vw, 3.5rem);
+}
+
+@media (max-width: 60rem) {
+  .related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40rem) {
+  .related-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.related-item {
+  position: relative;
+  border-top: 1px solid var(--rule);
+  padding-block: var(--s-5) var(--s-6);
+  transition: border-color var(--dur) var(--ease-out);
+}
+
+.section--dark .related-item {
+  border-color: var(--rule-inverse);
+}
+
+.related-item:hover {
+  border-top-color: var(--accent);
+}
+
+.related-item__title {
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  line-height: 1.22;
+  max-width: 15ch;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.related-item:hover .related-item__title {
+  color: var(--accent-ink);
+}
+
+.section--dark .related-item:hover .related-item__title {
+  color: var(--focus-inverse);
+}
+
+.related-item__desc {
+  margin-top: var(--s-3);
+  font-size: var(--t-small);
+  color: var(--ink-55);
+  line-height: 1.6;
+  max-width: 36ch;
+}
+
+.section--dark .related-item__desc {
+  color: var(--on-dark-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Attorney profile
+   -------------------------------------------------------------------------- */
+
+.profile-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: start;
+  padding-top: clamp(2rem, 1rem + 3vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+}
+
+@media (max-width: 60rem) {
+  .profile-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Same face-anchored crop the directory cards use, so a portrait is framed
+   identically wherever it appears. */
+.profile-hero__portrait img {
+  object-position: 50% 22%;
+}
+
+.profile-hero__name {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 1.4rem + 3vw, 3.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.026em;
+}
+
+.profile-hero__title {
+  margin-top: var(--s-4);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.profile-contact {
+  margin-top: var(--s-6);
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+  max-width: 34rem;
+}
+
+@media (max-width: 30rem) {
+  .profile-contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.profile-contact__item dt {
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+
+.profile-contact__item dd {
+  margin-top: 0.4rem;
+  font-size: var(--t-small);
+  line-height: 1.5;
+}
+
+.profile-contact__item a {
+  border-bottom: 1px solid var(--rule-strong);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.profile-contact__item a:hover {
+  border-color: var(--ink);
+}
+
+.profile-body {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 1rem + 4.5vw, 5.5rem);
+  align-items: start;
+}
+
+@media (max-width: 60rem) {
+  .profile-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.credential-block + .credential-block {
+  margin-top: var(--s-7);
+}
+
+.credential-block__title {
+  font-family: var(--font-sans);
+  font-size: var(--t-eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.credential-block__list {
+  margin-top: var(--s-4);
+  display: grid;
+  gap: var(--s-3);
+  font-size: var(--t-small);
+  line-height: 1.6;
+  color: var(--ink-70);
+}
+
+.credential-block__list li {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.credential-block__list strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.credential-block__list span {
+  color: var(--ink-55);
+  font-size: var(--t-micro);
+}
+
+/* Sub-entries beneath a credential — journal roles under a degree, and the
+   like. Marked with a hairline tick rather than a bullet. */
+.credential-block__details {
+  margin-top: 0.4rem;
+  display: grid;
+  gap: 0.25rem;
+  font-size: var(--t-micro);
+  color: var(--ink-55);
+}
+
+.credential-block__details li {
+  position: relative;
+  padding-left: 0.9rem;
+}
+
+.credential-block__details li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 5px;
+  height: 1px;
+  background: var(--rule-strong);
+}
+
+/* A practice area that names one of the site's practice pages. */
+.practice-area-link {
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.practice-area-link:hover,
+.practice-area-link:focus-visible {
+  color: var(--accent-ink);
+  border-bottom-color: var(--accent);
+}
+
+/* Representative experience, in the site's rule-separated list treatment. */
+.experience-list {
+  margin-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+
+.experience-list li {
+  padding-block: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  color: var(--ink-70);
+}
+
+/* --------------------------------------------------------------------------
+   Representative matters
+   -------------------------------------------------------------------------- */
+
+.matter-list {
+  border-top: 1px solid var(--rule);
+}
+
+.section--dark .matter-list {
+  border-color: var(--rule-inverse);
+}
+
+.matter {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: clamp(0.75rem, 0.3rem + 2vw, 3rem);
+  padding-block: clamp(1.35rem, 1rem + 1.4vw, 2.1rem);
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+
+.section--dark .matter {
+  border-color: var(--rule-inverse);
+}
+
+@media (max-width: 46.875rem) {
+  .matter {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-3);
+  }
+}
+
+/* Practice tags. Primary first, stacked so a cross-practice matter reads as
+   one label per line rather than a wrapped run-on. */
+.matter__tags {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+}
+
+.matter__practice {
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 0.28rem;
+}
+
+/* Only the leading tag carries the top offset that aligns it to the headline;
+   the rest sit tight beneath it. */
+.matter__tags .matter__practice + .matter__practice {
+  padding-top: 0;
+  color: var(--ink-40);
+}
+
+.section--dark .matter__practice {
+  color: var(--focus-inverse);
+}
+
+.section--dark .matter__tags .matter__practice + .matter__practice {
+  color: var(--on-dark-muted);
+}
+
+/* Matter headline. Display face at a step below the section headings so the
+   list still reads as a list rather than as a stack of titles. */
+.matter__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: var(--s-3);
+}
+
+.section--dark .matter__title {
+  color: var(--on-dark);
+}
+
+.matter__text {
+  font-size: clamp(1rem, 0.96rem + 0.25vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 68ch;
+}
+
+.section--dark .matter__text {
+  color: var(--on-dark);
+}
+
+.matter__role {
+  margin-top: var(--s-3);
+  font-size: var(--t-micro);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+
+.section--dark .matter__role {
+  color: var(--on-dark-muted);
+}
+
+/* --------------------------------------------------------------------------
+   CTA band
+   -------------------------------------------------------------------------- */
+
+.cta-band {
+  background: var(--surface-dark);
+  color: var(--on-dark);
+  padding-block: clamp(3.5rem, 2rem + 6vw, 7rem);
+}
+
+.cta-band__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: end;
+}
+
+@media (max-width: 60rem) {
+  .cta-band__grid {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.cta-band__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3.1rem);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+}
+
+.cta-band__text {
+  color: var(--on-dark-muted);
+  max-width: 42ch;
+  line-height: 1.7;
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+}
+
+/* --------------------------------------------------------------------------
+   Contact page
+   -------------------------------------------------------------------------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2.5rem, 1rem + 5vw, 6rem);
+  align-items: start;
+}
+
+@media (max-width: 60rem) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.office-detail {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.office-detail__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--s-4);
+  padding-block: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+
+.office-detail__row dt {
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-40);
+  padding-top: 0.15rem;
+}
+
+.office-detail__row dd {
+  font-size: var(--t-small);
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+@media (max-width: 30rem) {
+  .office-detail__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-2);
+  }
+}
+
+.map-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+.map-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(1) contrast(0.94);
+}
+
+.map-frame__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: var(--s-3);
+  text-align: center;
+  padding: var(--s-6);
+}
+
+/* --------------------------------------------------------------------------
+   Legal / long-form pages
+   -------------------------------------------------------------------------- */
+
+.legal-body {
+  max-width: var(--measure-wide);
+}
+
+.legal-body h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  line-height: 1.24;
+  margin-top: var(--s-8);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.legal-body h2:first-child {
+  margin-top: 0;
+}
+
+.legal-body h3 {
+  font-family: var(--font-sans);
+  font-size: var(--t-h4);
+  font-weight: 600;
+  margin-top: var(--s-6);
+}
+
+.legal-body p,
+.legal-body li {
+  color: var(--ink-70);
+  line-height: var(--lh-loose);
+}
+
+.legal-body p {
+  margin-top: var(--s-4);
+}
+
+.legal-body ul {
+  margin-top: var(--s-4);
+  display: grid;
+  gap: var(--s-3);
+}
+
+.legal-body ul li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.legal-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 6px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.legal-body a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   Article (insight detail)
+   -------------------------------------------------------------------------- */
+
+.article-head {
+  max-width: 52rem;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.25rem;
+  font-size: var(--t-eyebrow);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: var(--s-5);
+}
+
+.article-meta .is-accent {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.article-body {
+  max-width: var(--measure);
+  font-size: clamp(1.03rem, 1rem + 0.2vw, 1.15rem);
+  line-height: 1.78;
+  color: var(--ink-70);
+}
+
+.article-body > * + * {
+  margin-top: 1.35em;
+}
+
+.article-body h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  line-height: 1.26;
+  color: var(--ink);
+  margin-top: 2em;
+}
+
+.article-body ul {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.article-body ul li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.article-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: 6px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.article-aside {
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+}
+
+/* --------------------------------------------------------------------------
+   404
+   -------------------------------------------------------------------------- */
+
+.notfound {
+  min-height: 62svh;
+  display: grid;
+  align-content: center;
+  padding-block: clamp(4rem, 2rem + 8vw, 9rem);
+}

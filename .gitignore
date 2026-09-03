@@ -1,0 +1,50 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+.netlify/
+.vercel/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment. The bare `.env` and `.env*.local` rules did not cover
+# `.env.production` / `.env.development`, so everything is excluded and the
+# example file is re-included explicitly.
+.env
+.env.*
+!.env.example
+
+# Credentials, keys and certificates — never commit these.
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.jks
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+.npmrc
+.yarnrc
+*.keystore
+credentials.json
+secrets.json
+service-account*.json
+
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+
+*.tsbuildinfo
+next-env.d.ts.bak
+coverage/
