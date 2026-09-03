@@ -658,8 +658,8 @@ export const staff: Person[] = [
     group: 'staff',
     email: 'katie@rfllplaw.com',
     emailHref: 'mailto:katie@rfllplaw.com',
-    phone: '470-990-9042',
-    phoneHref: tel('470-990-9042'),
+    phone: '470-990-9046',
+    phoneHref: tel('470-990-9046'),
     ...portrait('katie-richardson.jpg', 'Katie Richardson'),
   },
   {
