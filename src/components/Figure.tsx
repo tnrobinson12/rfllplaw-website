@@ -13,6 +13,11 @@ type Props = {
   sizes?: string;
   /** Set true only for the single largest image in the initial viewport. */
   priority?: boolean;
+  /**
+   * Encoder quality. Left unset, next/image uses 75, which visibly softens
+   * portraits once a large original is downsampled into a small card frame.
+   */
+  quality?: number;
   /** Artwork used when no photograph has been supplied yet. */
   artwork?: ArtworkVariant;
   /** Corner tag shown over generated artwork. */
@@ -34,6 +39,7 @@ export function Figure({
   ratio = '3-2',
   sizes = '100vw',
   priority = false,
+  quality,
   artwork = 'facade',
   artworkTag,
   caption,
@@ -49,6 +55,7 @@ export function Figure({
       alt={alt ?? ''}
       fill
       sizes={sizes}
+      quality={quality}
       priority={priority}
       loading={priority ? undefined : 'lazy'}
       style={{ objectFit: 'cover' }}

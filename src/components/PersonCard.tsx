@@ -34,11 +34,24 @@ export function PersonCard({
   return (
     <article className={cardClass}>
       <div className="attorney-card__media">
+        {/* `sizes` must describe the real card slot, not an approximation: the
+            browser picks a srcset candidate from it before layout, so a value
+            that is too small under-fetches and a value that is too large makes
+            the browser downscale a lossy image again in software.
+
+            Measured against .card-grid--4 and its breakpoints, with the
+            container capped at 84rem and a 3rem column gap:
+              >= 84rem   4 cols, container capped ..... 264px
+              64–84rem   4 cols, fluid ................. ~21vw
+              52–64rem   3 cols ........................ ~29vw
+              34–52rem   2 cols ........................ ~45vw
+              <  34rem   1 col ......................... ~92vw */}
         <Figure
           src={person.portrait}
           alt={person.portraitAlt}
           ratio="4-5"
-          sizes="(max-width: 40rem) 50vw, (max-width: 64rem) 33vw, 25vw"
+          sizes="(min-width: 84rem) 264px, (min-width: 64rem) 21vw, (min-width: 52rem) 29vw, (min-width: 34rem) 45vw, 92vw"
+          quality={90}
           artwork="portrait-a"
           artworkTag={person.portrait ? undefined : 'Photo forthcoming'}
         />
