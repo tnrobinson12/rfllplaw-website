@@ -59,8 +59,10 @@ export default function DisclaimerPage() {
               Because no attorney-client relationship exists until it has been established in
               writing, information you send through this website is not privileged or confidential,
               and the firm may already represent another party with interests adverse to yours.
-              Please do not send confidential, sensitive or time-sensitive information through this
-              website. See the <Link href="/privacy">privacy policy</Link>.
+              Please do not submit confidential or sensitive information through the general website
+              contact form unless an attorney at the firm has instructed you to do so, and in any
+              event not until an attorney-client relationship has been established in writing. See
+              the <Link href="/privacy">privacy policy</Link>.
             </p>
 
             <h2>Prior results</h2>
@@ -79,10 +81,13 @@ export default function DisclaimerPage() {
 
             <h2>Jurisdiction and admissions</h2>
             <p>
-              The firm&rsquo;s attorneys are admitted to practice only in the jurisdictions
-              identified on their individual profiles. Nothing on this website is an offer to
-              represent you in a jurisdiction in which the responsible attorney is not admitted or
-              otherwise authorized to practice.
+              Each of the firm&rsquo;s attorneys is admitted to practice only in the jurisdictions
+              in which that attorney is licensed. Where admissions are identified on an
+              attorney&rsquo;s individual profile, that information is provided for general
+              reference and is not necessarily a complete statement of the attorney&rsquo;s
+              admissions. Nothing on this website is an offer to represent you in a jurisdiction in
+              which the attorney who would handle the matter is not admitted or otherwise
+              authorized to practice.
             </p>
 
             <h2>Third-party content</h2>

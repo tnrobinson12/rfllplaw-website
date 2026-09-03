@@ -96,6 +96,10 @@ export default function TermsPage() {
               The firm may revise these terms at any time. Continued use of the site after a change
               constitutes acceptance of the revised terms.
             </p>
+
+            <p className="muted" style={{ marginTop: 'var(--s-7)', fontSize: 'var(--t-micro)' }}>
+              Effective date: September 3, 2026
+            </p>
           </div>
         </div>
       </section>
