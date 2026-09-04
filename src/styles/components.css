@@ -647,6 +647,17 @@
   transition: border-color var(--dur) var(--ease-out);
 }
 
+/* The shared .card-link is `position: relative`, so its stretched ::after
+   resolves against the anchor's own box — here just the heading — leaving the
+   description, tags and the "Explore" cue outside the click target. Removing
+   the anchor's own positioning lets the ::after resolve against .practice-card,
+   which is the positioned ancestor, so the whole card is one link and one tab
+   stop. This is the same arrangement .person-card__link uses on attorney
+   cards; it is scoped here so the shared .card-link is unaffected elsewhere. */
+.practice-card .card-link {
+  position: static;
+}
+
 .practice-card:hover {
   border-top-color: var(--accent);
 }
