@@ -690,7 +690,7 @@ export const staff: Person[] = [
     slug: 'jadi-phillips',
     name: 'Jadi Phillips',
     sortName: 'Phillips, Jadi',
-    title: 'Legal Assistant',
+    title: 'Paralegal',
     group: 'staff',
     email: 'Jadi@rfllplaw.com',
     emailHref: 'mailto:Jadi@rfllplaw.com',
