@@ -762,6 +762,29 @@
   object-position: 50% 22%;
 }
 
+/* ---- Per-person crop overrides ------------------------------------------
+   Two staff portraits were shot full-length, so the shared 4:5 card crop
+   leaves the face small and shows too much body. These rules tighten the
+   framing to head-and-shoulders in DISPLAY ONLY — the source files are never
+   touched, and no other portrait is affected.
+
+   The image is 2:3 inside a 4:5 frame, so `object-fit: cover` already shows
+   ~83% of its height; panning with object-position alone cannot tighten it.
+   Scaling up is what actually crops in.
+
+   Anchoring both the object-position and the transform-origin to the TOP of
+   the image means the zoom expands downward from the crown, so the top of the
+   head can never be clipped no matter how the card is sized. `scale` is used
+   as an independent property rather than `transform`, so the card's existing
+   hover transform still composes on top instead of overriding it. */
+
+.attorney-card[data-person='kimberly-calhoun'] .attorney-card__media img,
+.attorney-card[data-person='kayla-samuel'] .attorney-card__media img {
+  object-position: 50% 0%;
+  transform-origin: 50% 0%;
+  scale: 1.8;
+}
+
 /* Hover belongs to cards that go somewhere. Staff cards are not links. */
 .attorney-card--linked:hover .attorney-card__media img,
 .attorney-card--linked:hover .attorney-card__media .artwork {

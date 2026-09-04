@@ -32,7 +32,10 @@ export function PersonCard({
   );
 
   return (
-    <article className={cardClass}>
+    /* `data-person` is the hook for the few portraits that need their own crop
+       treatment — see the per-person rules in components.css. It carries no
+       styling of its own. */
+    <article className={cardClass} data-person={person.slug}>
       <div className="attorney-card__media">
         {/* `sizes` must describe the real card slot, not an approximation: the
             browser picks a srcset candidate from it before layout, so a value
