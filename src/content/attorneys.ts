@@ -350,8 +350,8 @@ const attorneyEntries: AttorneyEntry[] = [
   },
   {
     slug: 'christopher-berney',
-    name: 'Christopher Berney',
-    sortName: 'Berney, Christopher',
+    name: 'Christopher P. Berney',
+    sortName: 'Berney, Christopher P.',
     title: 'Partner',
     group: 'attorney',
     rank: 'partner',
@@ -359,11 +359,12 @@ const attorneyEntries: AttorneyEntry[] = [
     emailHref: 'mailto:cberney@rfllplaw.com',
     phone: '404-881-6010',
     phoneHref: tel('404-881-6010'),
-    ...portrait('christopher-berney.jpg', 'Christopher Berney'),
+    ...portrait('christopher-berney.jpg', 'Christopher P. Berney'),
     ...DEFAULTS,
     overview: [
-      'Christopher Berney has represented businesses, entrepreneurs, and creative professionals for more than 25 years. His practice focuses on business law, contracts, commercial matters, and litigation.',
-      'Chris brings an entrepreneurial perspective to his legal practice, having experience operating his own businesses as well as representing business owners. He advises clients regarding legal structures, contracts, disputes, and other issues arising in the operation and growth of privately held businesses.',
+      'Christopher P. Berney is a partner at Robinson Franzman LLP, where he practices commercial litigation with a focus on secured transactions and landlord-tenant matters. Based in the Decatur, Georgia area, Mr. Berney brings substantial experience in complex commercial disputes and creditor representation. His practice encompasses a wide range of commercial law matters, with particular depth in UCC Article 9 secured transactions and related financing issues.',
+      'Mr. Berney maintains an active landlord-tenant practice, advising clients on commercial lease disputes, dispossessory actions, and related real property matters. His work is characterized by a strategic approach to dispute resolution and a commitment to protecting his clients’ financial and property interests. He represents clients across a diverse range of industries and transaction sizes, from straightforward collection matters to complex multi-party litigation.',
+      'Mr. Berney earned his Juris Doctor from Drake University College of Law in 1995 and his Master of Business Administration from Drake University in 1992. He is admitted to practice in Georgia. He can be reached at cberney@rfllplaw.com or through Robinson Franzman LLP’s offices at 191 Peachtree Street NE, Suite 2600, Atlanta, Georgia 30303.',
     ],
     practiceAreas: [
       'Corporate & Business',
